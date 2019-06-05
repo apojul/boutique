@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('connexion.php');
+include_once 'connexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,6 +24,6 @@ include_once('connexion.php');
 
     </header>
 <body>
-    
+
 </body>
 </html>

@@ -4,23 +4,16 @@ include_once '../includes/connexion.php';
 //$user ='root';
 //$pass = '6eeafaef013319822a1f30407a5353f778b59790';
 if (isset($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
-    //$username = $_POST['username'];
-    //$password = $_POST['password'];
     extract($_POST);
-    //print_r($_POST);
     $password = sha1($password);
-    //var_dump($_SESSION);
     $query = "SELECT id_users FROM users WHERE username='$username' AND password='$password'";
     $query = mysqli_query($link, $query) or die(mysqli_error);
     if (mysqli_num_rows($query) > 0) {
-        //if ($username&&$password) {
-        //if ($username==$user&&$password==$pass) {
         //$_SESSION['Auth'] = array(
-            //'username' => $username,
-            //'password' => $password,
+        //'username' => $username,
+        //'password' => $password,
         //);
 
-        //var_dump($_SESSION);
         header('location: admin.php');
     } else {
         echo 'Identifiants erronés';
