@@ -10047,12 +10047,14 @@ header h1 {
   .menu li a {
     margin-right: -3px;
     padding: 12px 50px;
-    background-color: #63a3cb;
+    background-color: #B5CE7F;
     color: white;
   }
-  .menu li a:hover {
-    background-color: #3596bd;
-  }
+  .menu li a:hover{
+    background-color: #B596BD;
+    transition: all 0.7s ease-in-out;
+    }
+    
   .sidebar {
     margin-top: 30px;
     background-color: #3f8ebf;
@@ -10077,9 +10079,4 @@ header h1 {
     height: 50%;
     float: left;
   }
-  hr {
-    border:none;
-    border-bottom: 1px solid black;
-
-  }
-/*# sourceMappingURL=bootstrap.css.map */
+  

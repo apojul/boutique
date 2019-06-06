@@ -1,6 +1,7 @@
 <?php
 session_start();
-include '../includes/connexion.php';
+include '../includes/header.php';
+include_once '../includes/connexion.php';
 ?>
 <link rel="stylesheet" href="../style/bootstrap.css">
 
@@ -9,6 +10,15 @@ include '../includes/connexion.php';
 <a href="?action=add">Ajouter un produit</a>&nbsp&nbsp&nbsp&nbsp
 <a href="?action=modify_or_delete">Modifier ou supprimer un produit</a><br><br>
 <!-- <a href="?action=delete">Supprimer un produit</a> -->
+
+<form action="" method="post">
+    <h3>Titre : </h3><input type="text" name="title" id="">
+    <h3>Auteur : </h3><input type="text" name="author" id="">
+    <h3>Année : </h3><input type="text" name="year" id="">
+    <h3>Genre : </h3><input type="text" name="gender" id="">
+    <h3>Prix : </h3><input type="text" name="price" id=""><br><br>
+    <input type="submit" value="Envoyer" />
+</form>
 <?php
 
 if (isset($_SESSION)) {
@@ -28,16 +38,7 @@ if (isset($_SESSION)) {
                     echo 'Veuillez remplir tous les champs';
                 }
             }
-            ?>
-<form action="" method="post">
-    <h3>Titre : </h3><input type="text" name="title" id="">
-    <h3>Auteur : </h3><input type="text" name="author" id="">
-    <h3>Année : </h3><input type="text" name="year" id="">
-    <h3>Genre : </h3><input type="text" name="gender" id="">
-    <h3>Prix : </h3><input type="text" name="price" id=""><br><br>
-    <input type="submit" value="Envoyer" />
-</form>
-<?php
+            
 } elseif ($_GET['action'] == 'modify_or_delete') {
             $query = "SELECT `auteur`.name, `livre`.titre, `livre`.prix, `livre`.id FROM `auteur` INNER JOIN `livre` on `auteur`.id = `livre`.auteur_id";
             $result = mysqli_query($link, $query);
@@ -65,7 +66,6 @@ if (isset($_SESSION)) {
 </form>
         <?php
 if (isset($_POST)) {
-                var_dump($_POST);
                 $title = $_POST['title'];
                 $author = $_POST['author'];
                 $year = $_POST['year'];

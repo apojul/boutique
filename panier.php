@@ -1,6 +1,6 @@
 <?php
 session_start();
-/* try
+try
 {
     $db = new PDO('mysql:host=localhost;dbname=bookshop', 'root', '1234512345');
     $db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
@@ -9,7 +9,7 @@ session_start();
 
     echo 'une erreur est survenue';
     die();
-} */
+}
 
 ?>
 
@@ -45,7 +45,6 @@ if ($action !== null) {
     $l = preg_replace('#\v#', '', $l);
     //retourne la valeur de type
     $p = floatval($p);
-    
     if (is_array($q)) {
         $QteProduit = array();
         $i = 0;
@@ -72,14 +71,9 @@ if (!$erreur) {
 
         case "refresh":
             for ($i = 0; $i < count($QteProduit); $i++) {
-                modifierQteProduit($_SESSION['panier']['libelleProduit'][$i], $QteProduit[$i]);
+                modifierQteProduit($_SESSION['panier']['libelleProduit'][$i], round($QteProduit[$i]));
 
             }
-
-            break;
-
-        case "valider":
-            validerPanier();
 
             break;
 
@@ -95,9 +89,9 @@ if (!$erreur) {
 
 <form action="" method="post" >
 
-<table width='600'>
+<table width='400'>
     <tr>
-        <td colspan="4">Détail de votre commande : </td>
+        <td colspan="4">votre panier</td>
     </tr>
     <tr>
     <td>Libellé produit</td>
@@ -120,20 +114,19 @@ if (creationPanier()) {
     } else {
 
         for ($i = 0; $i < $nbProduits; $i++) {
-            
             ?>
                 <tr>
                    <td><br/><?php echo $_SESSION['panier']['libelleProduit'][$i]; ?></td>
                    <td><br/><?php echo number_format($_SESSION['panier']['prixProduit'][$i],2,',',' '); ?></td>
-                   <td><br/><input name="q[]" value="<?php echo htmlspecialchars($_SESSION['panier']['qteProduit'][$i]); ?>" size="5"/></td>
-                   <!-- <?php echo $_SESSION['panier']['tva'] . " %"; ?></td> -->
-                   <td><br/><a href="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]); ?>" style="font-size:30px"><img src="img/Corbeillevide.jpg" alt="" width="35" height="43"></a></td>
-                   
+                   <td><br/><input name="q[]" value="<?php echo $_SESSION['panier']['qteProduit'][$i]; ?>" size="5"/></td>
+                   <!-- <td><br/><?php echo $_SESSION['panier']['tva'] . " %"; ?></td> -->
+                   <td><br/><a href="panier.php?action=suppression&amp;l=<?php echo rawurlencode($_SESSION['panier']['libelleProduit'][$i]); ?>"><img src="img/Corbeillevide.jpg" alt="" width="35" height="43"></a></td>
+
                 </tr>
                 <?php }?>
                 <tr>
                     <td colspan="2"><br/>
-                    <p>Total : <?php echo MontantGlobal(); ?></p><br/>
+                    <p>Total : <?php echo number_format(MontantGlobal(), 2, ',', ' '); ?></p><br/>
                     <!-- <p>Total Taxes Comprises : <?php echo MontantGlobalTVA(); ?></p> -->
                     </td>
                 </tr>
@@ -141,9 +134,7 @@ if (creationPanier()) {
                     <td colspan="4">
                         <input type="submit" value="rafraichir"/>
                         <input type="hidden" name="action" value="refresh"/>
-                        <a href="?deletePanier=true">Supprimer le panier</a>&nbsp&nbsp&nbsp&nbsp <a href="boutique.php">Retour au catalogue</a>&nbsp&nbsp&nbsp&nbsp <a href="javascript:history.back()">Page précédente</a>
-
-                        
+                        <a href="?deletePanier=true">Supprimer le panier</a>
 
                     </td>
                 </tr>
@@ -156,6 +147,7 @@ if (creationPanier()) {
 }
 
 ?>
+
 </table>
 
 

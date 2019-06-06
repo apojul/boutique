@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <h5><?php echo $row['year'] . '&nbsp'; ?></h5>
     <h4><?php echo number_format($row['prix'], 2, ',', ' ') . '&nbsp'; ?> €</h4>
     <a href="panier.php?action=ajout&amp;l=<?php echo $row['titre']; ?> &amp;q=1&amp;p=<?php echo number_format($row['prix'], 2, ',', ' '); ?>&amp;">Ajouter au panier</a>
-    <br><br>
+    <br>
     <hr>
     <?php
 }
