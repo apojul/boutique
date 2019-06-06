@@ -10072,4 +10072,14 @@ header h1 {
     color: white;
     padding: 10px 40px;
   }
+  .img {
+    width: 50%;
+    height: 50%;
+    float: left;
+  }
+  hr {
+    border:none;
+    border-bottom: 1px solid black;
+
+  }
 /*# sourceMappingURL=bootstrap.css.map */
